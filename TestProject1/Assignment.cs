@@ -22,10 +22,10 @@ namespace TestProject1
             driver.Url = "https://invoicesmash-staging.com/logon";
             // IWebElement EmailElement=driver.FindElement(By.XPath(".//*[@class='form-control ng-isolate-scope ng-valid-email ng-valid-maxlength ng-dirty ng-valid ng-valid-required ng-touched'"));
             IWebElement EmailElement = driver.FindElement(By.Id("UserName"));
-            EmailElement.SendKeys("abhikran@gmail.com");
+            EmailElement.SendKeys("abhikrantkumar@gmail.com");
             // IWebElement PasswordElement = driver.FindElement(By.XPath(".//*[@class='form-control ng-isolate-scope ng-dirty ng-valid-parse ng-valid ng-valid-required ng-touched']"));
             IWebElement PasswordElement = driver.FindElement(By.Id("Password"));
-            PasswordElement.SendKeys("*************");
+            PasswordElement.SendKeys("**********");
             IWebElement loginButton = driver.FindElement(By.XPath(".//*[@class='btn btn-lg btn-primary btn-block']"));
             //driver.FindElement(By.ClassName("btn btn-lg btn-primary btn-block")).Click();
               loginButton.Click();
@@ -34,19 +34,41 @@ namespace TestProject1
             IWebElement userSession = driver.FindElement(By.XPath(".//*[@href='/AppAdmin/Admin/TakeOverUserSession']"));
             userSession.Click();
             Thread.Sleep(2000);
-            // IWebElement subscriptionelement = driver.FindElement(By.XPath(".//*[@class='chosen-single chosen-default']"));
-            //            subscriptionelement.SendKeys("invoicesmash");
-            //            subscriptionelement.Click();
-            //        IWebElement ui = driver.FindElement(By.XPath(".//*[@class='chosen-results']"));
-            //          ui.Click();
-            //            ui.FindElement(By.CssSelector("li[data-option-array-index=" +5+ "]")).Click();
-
-            //IWebElement dropdown = driver.FindElement(By.CssSelector(".chosen-container.chosen-container-single.chosen-with-drop"));
-          //  dropdown.Click();
+         
+            IWebElement dropdown = driver.FindElement(By.CssSelector(".chosen-single>span"));
+             dropdown.Click();
+          //  dropdown.GetAttribute("invove");
             Thread.Sleep(2000);
-            IWebElement options = driver.FindElement(By.CssSelector(".input-group>select"));
-            var selectElement = new SelectElement(options);
-            selectElement.SelectByValue("1");
+            driver.FindElement(By.CssSelector(".chosen-search>input")).SendKeys("invoice-smash-master.coupadev.com");
+            Thread.Sleep(5000);
+         
+            IWebElement takeOverButton = driver.FindElement(By.XPath(".//*[@class='btn btn-primary']"));
+            takeOverButton.Click();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(".//*[@class='navbar-brand']")));
+
+            IWebElement homeElement = driver.FindElement(By.XPath(".//*[@href='/Account/ISAdmin']"));
+            homeElement.Click();
+            Thread.Sleep(2000);
+            driver.Close();
+
+
+                 
+        
+        
+        }
+    }
+}
+/*
+ All the trash nd heat and trail methods i tried.
+
+   //IWebElement options = driver.FindElement(By.CssSelector(".input-group>select"));
+//            options.Click();            
+           // var selectElement = new SelectElement(options);
+            //selectElement.SelectByIndex(2);
+
+          //  selectElement.SelectByValue("1");
+
 
 
 
@@ -71,21 +93,6 @@ namespace TestProject1
             //selectElement.SelectByValue("invoice-smash-master.coupadev.com");
 
             //instanceELement.SendKeys("invoice-smash-master.coupadev.com");
-
-            IWebElement takeOverButton = driver.FindElement(By.XPath(".//*[@class='btn btn-primary']"));
-            takeOverButton.Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(".//*[@class='navbar-brand']")));
-
-            IWebElement homeElement = driver.FindElement(By.XPath(".//*[@href='/Account/ISAdmin']"));
-            homeElement.Click();
-            Thread.Sleep(2000);
-            driver.Close();
-
-
-                 
-        
-        
-        }
-    }
-}
+ 
+ 
+ */
