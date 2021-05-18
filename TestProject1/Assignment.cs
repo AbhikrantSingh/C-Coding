@@ -10,22 +10,24 @@ using OpenQA.Selenium.Support.UI;
 
 namespace TestProject1
 {
+
     [TestFixture]
     public class Assignment
     {
-        [Test]
+        IWebDriver driver;
+       [Test] 
         public void login()
         {
-           
-            IWebDriver driver = new ChromeDriver();
+
+             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();  
             driver.Url = "https://invoicesmash-staging.com/logon";
             // IWebElement EmailElement=driver.FindElement(By.XPath(".//*[@class='form-control ng-isolate-scope ng-valid-email ng-valid-maxlength ng-dirty ng-valid ng-valid-required ng-touched'"));
             IWebElement EmailElement = driver.FindElement(By.Id("UserName"));
-            EmailElement.SendKeys("abhikrantkumar@gmail.com");
+            EmailElement.SendKeys("abhikrant.com");
             // IWebElement PasswordElement = driver.FindElement(By.XPath(".//*[@class='form-control ng-isolate-scope ng-dirty ng-valid-parse ng-valid ng-valid-required ng-touched']"));
             IWebElement PasswordElement = driver.FindElement(By.Id("Password"));
-            PasswordElement.SendKeys("**********");
+            PasswordElement.SendKeys("***********");
             IWebElement loginButton = driver.FindElement(By.XPath(".//*[@class='btn btn-lg btn-primary btn-block']"));
             //driver.FindElement(By.ClassName("btn btn-lg btn-primary btn-block")).Click();
               loginButton.Click();
@@ -47,6 +49,7 @@ namespace TestProject1
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(".//*[@class='navbar-brand']")));
 
+            Thread.Sleep(5000);
             IWebElement homeElement = driver.FindElement(By.XPath(".//*[@href='/Account/ISAdmin']"));
             homeElement.Click();
             Thread.Sleep(2000);
@@ -56,6 +59,16 @@ namespace TestProject1
                  
         
         
+        }
+        public void uploadingReceipt()
+        {
+            login();
+            driver.Url = "https://invoice-smash-master-test.coupadev.com";
+            driver.FindElement(By.Id("user_login")).SendKeys("CustomerSupport");
+            driver.FindElement(By.Id("user_password")).SendKeys("CustomerSupport");
+            driver.FindElement(By.Id("login_button")).Click();
+            driver.FindElement(By.CssSelector(".dz-default.dz-message>span")).SendKeys("C:\\Users\\Amitesh\\Downloads\\Untitled document.pdf");
+
         }
     }
 }
