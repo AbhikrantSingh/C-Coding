@@ -13,7 +13,7 @@ namespace TestProject1
         public void AddReceipt()
         {
             driver.Url = "https://invoice-smash-master-test.coupadev.com";
-            driver.FindElement(By.CssSelector(".dz-default.dz-message>span")).SendKeys("C:\\Users\\Amitesh\\Downloads\\Untitled document.pdf");
+            //driver.FindElement(By.CssSelector(".dz-default.dz-message>span")).SendKeys("C:\\Users\\Amitesh\\Downloads\\Untitled document.pdf");
             
         }
     }

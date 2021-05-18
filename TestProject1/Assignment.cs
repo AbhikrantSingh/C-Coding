@@ -7,6 +7,7 @@ using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
 using System.Threading;
 using OpenQA.Selenium.Support.UI;
+using System.Collections;
 
 namespace TestProject1
 {
@@ -22,34 +23,35 @@ namespace TestProject1
              driver = new ChromeDriver();
             driver.Manage().Window.Maximize();  
             driver.Url = "https://invoicesmash-staging.com/logon";
-            // IWebElement EmailElement=driver.FindElement(By.XPath(".//*[@class='form-control ng-isolate-scope ng-valid-email ng-valid-maxlength ng-dirty ng-valid ng-valid-required ng-touched'"));
             IWebElement EmailElement = driver.FindElement(By.Id("UserName"));
             EmailElement.SendKeys("abhikrant.com");
-            // IWebElement PasswordElement = driver.FindElement(By.XPath(".//*[@class='form-control ng-isolate-scope ng-dirty ng-valid-parse ng-valid ng-valid-required ng-touched']"));
             IWebElement PasswordElement = driver.FindElement(By.Id("Password"));
-            PasswordElement.SendKeys("***********");
+            PasswordElement.SendKeys("********");
             IWebElement loginButton = driver.FindElement(By.XPath(".//*[@class='btn btn-lg btn-primary btn-block']"));
-            //driver.FindElement(By.ClassName("btn btn-lg btn-primary btn-block")).Click();
               loginButton.Click();
-        //    Thread.Sleep(5000);
             Thread.Sleep(5000);
             IWebElement userSession = driver.FindElement(By.XPath(".//*[@href='/AppAdmin/Admin/TakeOverUserSession']"));
             userSession.Click();
             Thread.Sleep(2000);
          
             IWebElement dropdown = driver.FindElement(By.CssSelector(".chosen-single>span"));
-             dropdown.Click();
+            dropdown.Click();
           //  dropdown.GetAttribute("invove");
             Thread.Sleep(2000);
-            driver.FindElement(By.CssSelector(".chosen-search>input")).SendKeys("invoice-smash-master.coupadev.com");
+           IWebElement ele= driver.FindElement(By.CssSelector(".chosen-search>input"));
+            ele.SendKeys("invoice-smash-master.coupadev.com");
+            ele.SendKeys(Keys.Enter);
             Thread.Sleep(5000);
-         
+           // dropdown.Click();
+           
+//            dropdown.Click();
+
             IWebElement takeOverButton = driver.FindElement(By.XPath(".//*[@class='btn btn-primary']"));
             takeOverButton.Click();
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(".//*[@class='navbar-brand']")));
 
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             IWebElement homeElement = driver.FindElement(By.XPath(".//*[@href='/Account/ISAdmin']"));
             homeElement.Click();
             Thread.Sleep(2000);
