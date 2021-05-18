@@ -75,8 +75,17 @@ namespace TestProject1
     }
 }
 /*
+ * 
  All the trash nd heat and trail methods i tried.
-
+ IWebElement options = driver.FindElement(By.CssSelector(".container.ng-scope>div>div>div>select"));
+            var selectElement = new SelectElement(options);
+            Console.WriteLine(selectElement.Options);
+            //    selectElement.SelectByIndex(10);
+            //  ArrayList list = new ArrayList();
+            selectElement.SelectByValue("10");
+         //   list.Add(selectElement.AllSelectedOptions);
+           // Console.WriteLine(list);
+s
    //IWebElement options = driver.FindElement(By.CssSelector(".input-group>select"));
 //            options.Click();            
            // var selectElement = new SelectElement(options);
